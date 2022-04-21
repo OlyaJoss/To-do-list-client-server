@@ -32,12 +32,17 @@ app.get('/', function (req, res) {
         const userIdx = mockData.findIndex((user) => user.id === idOfUser); 
         if (userIdx !== -1) {
             restUsers = mockData.filter((user) => user.id !== idOfUser);
-            mockData = { ...restUsers };
+            mockData = [ ...restUsers ];
             res.json(mockData)
         } else {
             res.status(404).json()
         } 
     })
+
+app.delete('/all', function (req, res) {
+    mockData = [];
+    res.json(mockData)
+})
 
 app.listen(8080, () =>
     console.log(`App are listening at port 8080`)
